@@ -1,0 +1,25 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        decimal valorPresente = 7210.35m;
+        decimal taxaJuros = 1.25m / 100;
+        int periodoMes = 6;
+        decimal periodoAno = periodoMes / 12.0m;
+
+        Console.WriteLine("VALOR PRESENTE: " + valorPresente.ToString("N2"));
+        Console.WriteLine("TAXA DE JUROS: " + (taxaJuros * 100).ToString("N2") + "%");
+        Console.WriteLine("PERÍODO (mês): " + periodoMes);
+        Console.WriteLine("PERÍODO EM ANO: " + periodoAno.ToString("N1"));
+
+        Console.WriteLine("\nRendimentos Mensais:");
+
+        for (int mes = 1; mes <= periodoMes; mes++)
+        {
+            decimal valorFuturo = valorPresente * (decimal)Math.Pow((double)(1 + taxaJuros), mes);
+            Console.WriteLine($"Mês {mes}: R$ {valorFuturo.ToString("N2")}");
+        }
+    }
+}
