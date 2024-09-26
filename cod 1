@@ -1,0 +1,26 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Digite o valor presente: R$ ");
+        decimal valorPresente = Convert.ToDecimal(Console.ReadLine());
+
+        Console.Write("Digite a taxa de juros (em %): ");
+        decimal taxaJuros = Convert.ToDecimal(Console.ReadLine()) / 100;
+
+        Console.Write("Digite o período em meses: ");
+        int periodoMeses = Convert.ToInt32(Console.ReadLine());
+
+        decimal valorFuturo = valorPresente * (decimal)Math.Pow((double)(1 + taxaJuros), periodoMeses);
+        decimal rendimento = valorFuturo - valorPresente;
+
+        Console.WriteLine("\nResultados:");
+        Console.WriteLine("Valor Presente: R$ " + valorPresente.ToString("N2"));
+        Console.WriteLine("Taxa de Juros: " + (taxaJuros * 100).ToString("N2") + "%");
+        Console.WriteLine("Período (meses): " + periodoMeses);
+        Console.WriteLine("Valor Futuro: R$ " + valorFuturo.ToString("N2"));
+        Console.WriteLine("Rendimento: R$ " + rendimento.ToString("N2"));
+    }
+}
