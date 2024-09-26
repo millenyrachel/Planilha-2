@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Digite o valor presente: R$ ");
+            decimal valorPresente = Convert.ToDecimal(Console.ReadLine());
+
+            Console.Write("Digite a taxa de juros (em %): ");
+            decimal taxaJuros = Convert.ToDecimal(Console.ReadLine()) / 100;
+
+            Console.Write("Digite o período em meses: ");
+            int periodoMeses = Convert.ToInt32(Console.ReadLine());
+
+            decimal valorAcumulado = valorPresente;
+
+            Console.Write("Digite o valor do resgate: R$ ");
+            decimal valorResgate = Convert.ToDecimal(Console.ReadLine());
+
+            Console.WriteLine("\nResultados Mensais:");
+
+            for (int mes = 1; mes <= periodoMeses; mes++)
+            {
+                valorAcumulado *= (1 + taxaJuros);
+                decimal rendimento = valorAcumulado - valorPresente;
+
+                Console.WriteLine($"Mês {mes}:");
+                Console.WriteLine($"  Valor Acumulado: R$ {valorAcumulado.ToString("N2")}");
+                Console.WriteLine($"  Rendimento: R$ {rendimento.ToString("N2")}");
+
+                if (mes == periodoMeses)
+                {
+                    decimal saldoPosResgate = valorAcumulado - valorResgate;
+                    Console.WriteLine($"  Saldo Pós Resgate: R$ {saldoPosResgate.ToString("N2")}");
+                }
+            }
+            Console.ReadLine();
+        }
+    }
+}
