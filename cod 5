@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp4
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Digite o valor presente: R$ ");
+            decimal valorPresente = Convert.ToDecimal(Console.ReadLine());
+
+            decimal valorFuturoDesejado = 7390.61m;
+
+            Console.Write("Digite o período em meses: ");
+            int periodoMeses = Convert.ToInt32(Console.ReadLine());
+
+
+            decimal taxaNecessaria = CalculateRequiredRate(valorPresente, valorFuturoDesejado, periodoMeses);
+
+
+            decimal valorFuturo = valorPresente * (decimal)Math.Pow((double)(1 + taxaNecessaria), periodoMeses);
+            decimal rendimento = valorFuturo - valorPresente;
+
+            Console.WriteLine("\nResultados:");
+            Console.WriteLine("Valor Presente: R$ " + valorPresente.ToString("N2"));
+            Console.WriteLine("Período (meses): " + periodoMeses);
+            Console.WriteLine("Taxa Necessária: " + (taxaNecessaria * 100).ToString("N2") + "% ao mês");
+            Console.WriteLine("Valor Futuro: R$ " + valorFuturo.ToString("N2"));
+            Console.WriteLine("Rendimento: R$ " + rendimento.ToString("N2"));
+
+            Console.ReadLine();
+        }
+        static decimal CalculateRequiredRate(decimal valorPresente, decimal valorFuturo, int meses)
+        {
+            return (decimal)Math.Pow((double)(valorFuturo / valorPresente), (double)(1.0 / meses)) - 1;
+        }
+    }
+}
